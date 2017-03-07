@@ -1,61 +1,81 @@
 var f = 0;
-var redValue = 0;
-var greenValue = 0;
-var blueValue = 0;
-
 
 function setup() {
-    createCanvas(800, 800);
+    createCanvas(800, 800);   
 }
 
 function draw() {
     background(0);
-    noStroke();
     
+    //moon at top left
+    fill(255, 204, 229, 197);
+    stroke(255);
+    ellipse(0,0,150,150);
     
-    //her drawing machine week 7 example
-    //pink circle has a pink quivering circle inside
-    redValue = random(255);
-    greenValue = random(255);
-    blueValue = random(255);
-    stroke(redValue, greenValue, blueValue);
-    if (mouseIsPressed == false) {
-        ellipse(mouseX, mouseY, height / 20, height / 20);
-    } else {
-        background(0);
-        fill(0);
-    }
-    
-    //a moving flower (instead of her red bus)
+    //moving pink flower (instead of her red bus)
     push();
-    translate(f, 0);
-    fill(204, 21, 192, 127);
-    stroke(127, 63, 120);
-    translate(580, 200);
+    translate(f, 200);//changed from 0 to 300, I put 200
+    fill(204, 21, 192, 97);
+    //translate(580, 200); she deleted this
     noStroke();
-    for (var i = 0; i < 10; i ++) {
+    for (var i = 0; i < 10; i ++) {//makes ellipse into flower shape
     ellipse(20, 130, 20, 380);
     rotate(PI/5);
     }
-    if (f < width + 25) {
+    if (f < width + 300) {//she changed from 25 to 300
         f++;
     } else {
-        f = -250;
+        f = -300;//she changed from -250 to -300
+    }
+    pop();
+    
+    //moving purple flower (instead of her red bus)
+    push();
+    translate(f, 500);//changed from 0 to 300, I put 500, lowers flower
+    fill(104, 21, 242, 57);
+    translate(580, 200);//put in to lower it, move to rt 
+    noStroke();
+    for (var i = 0; i < 10; i ++) {
+    ellipse(20, 130, 20, 380);
+    rotate(PI/4);
+    }
+    if (f < width + 300) {//she changed from 25 to 300
+        f++;
+    } else {
+        f = -300;//she changed from -250 to -300
+    }
+    pop();
+    
+    //moving blue flower (instead of her red bus)
+    push();
+    translate(f, 400);//changed from 0 to 300
+    fill(40, 21, 242, 37);
+    translate(280, 70);//put in to lower it, move to rt 
+    noStroke();
+    for (var i = 0; i < 10; i ++) {
+    ellipse(20, 130, 20, 380);
+    rotate(PI/4);
+    }
+    if (f < width + 300) {//she changed from 25 to 300
+        f++;
+    } else {
+        f = -300;//she changed from -250 to -300
     }
     pop();
  
-    //diagonal purple lines
+    //diagonal pink lines w/white tips
     fill(255);
     stroke(127, 63, 120); 
-    for (var y = 20; y <= height-20; y += 100) {
-    for (var x = 20; x <= width-20; x += 100) {
+    strokeWeight(1);   
+    for (var y = 18; y <= height+18; y += 100) {
+    for (var x = 18; x <= width+18; x += 100) {
     ellipse(x, y, 4, 4);
     // Draw a line to the center of the display
     line(x, y, 0, 0);
-    }
+    }   
     }
  
-    //purple circle when move mouse, black circle when mouse pressed
+    //pink circle when move mouse, black circle when mouse pressed
     //moves w/mouse due to mouseX,mouseY
     if (mouseIsPressed) {
     fill(0);
@@ -63,18 +83,19 @@ function draw() {
     else {
     fill(204, 21, 192, 127);
     }
-    ellipse(mouseX, mouseY, 80, 80);
+    ellipse(mouseX, mouseY, 40, 40);
 
-    //changes blue to purple ellipse, no movement w/mouse cuz no mouseX,mouseY
+    //blue to purple ellipse when mouse pressed, no movement         w/mouse cuz no mouseX,mouseY 
     if (mouseIsPressed) {
-    fill(155,150,190,147);
+    fill(104, 21, 242, 67);//purple when pressed
     } else {
-    fill(0, 155, 255,97);
+    fill(0, 155, 255,77);//blue normally
+    strokeWeight(3); 
     }
-    //ellipse(width / 2, 250, 100, 600);
-    ellipse(450, 250, 100, 600);
+    ellipse(500, 250, 20, 550);//instead of 500 can do width/2 but then oval is centered
     
-    // A design for a simple flower 
+  
+    //simple pink flower rotates
     fill(204, 101, 192, 147);
     stroke(127, 63, 120);
     translate(500, 200);
@@ -85,12 +106,21 @@ function draw() {
     rotate(PI/5);//gives it flower shape
     }
     
-    //from book, vertical lines that go over each other   
-    stroke(225, 163, 120);
-    line(0, 0, mouseX, height); // Purple line
-    stroke(0,0,255);
+    //diag blue/orange lines that spiral,from book
+    stroke(0, 155, 255,87); //Blue line
+    line(0, 0, mouseX, height); 
+    
+    stroke(104, 21, 242, 200);//Purple line
+    line(0, 0, mouseX + 120, height); 
+    
+    stroke(225, 163, 120, 200);//Orange line
+    line(0, 0, mouseX + 250, height);
+    
+    stroke(204, 21, 192, 197);// Pink line
     var mx = mouseX/2 + 10;
-    line(0, 0, mx, height); // Blue line
-    translate(mouseX, mouseY); 
-
+    line(0, 0, mx, height); 
+    translate(mouseX, mouseY);
+    
 }
+
+
